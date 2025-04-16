@@ -54,7 +54,7 @@
     <!-- Status message displayed at the top center -->
     <div class="status-message"><%= statusMessage %></div>
 
-    <% if (statusMessage.toLowerCase().includes('open')) { %>
+    <% if (statusMessage.toLowerCase().includes('the shop will close')) { %>
       <!-- Sketchfab Model Embed with Viewer API -->
       <div class="iframe-container">
         <iframe
@@ -92,7 +92,7 @@
           }
         });
       </script>
-    <% } else { %>
+    <% } else if(statusMessage.toLowerCase().includes('closed.')) { %>
       <!-- Container for custom 3D model -->
       <div id="3d-container"></div>
         <!-- Import map for module-based THREE.js -->
