@@ -2,8 +2,9 @@
   "name": "pr7_time_zone_converter",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "tsx watch --no-warnings src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
@@ -28,7 +29,9 @@
     "@eslint/js": "^9.23.0",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.14",
+    "@types/three": "^0.175.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "eslint": "^9.23.0",
@@ -42,12 +45,18 @@
     "typescript-eslint": "^8.28.0"
   },
   "dependencies": {
+    "@loaders.gl/gltf": "^4.3.3",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "http-status-codes": "^2.3.0",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.2",
     "path": "^0.12.7",
+    "three": "^0.175.0",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.3"
   }
 }

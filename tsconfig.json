@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "target": "ES2016" /* Specifies the target ECMAScript version. */,
-    "module": "commonjs" /* Sets the module system for the project. */,
+    "target": "ESNext" /* Specifies the target ECMAScript version. */,
+    "module": "ESNext" /* Sets the module system for the project. */,
     "esModuleInterop": true /* Enables compatibility between CommonJS and ES Modules. */,
     "forceConsistentCasingInFileNames": true /* Ensures consistent file name casing across the project. */,
     "outDir": "./dist",

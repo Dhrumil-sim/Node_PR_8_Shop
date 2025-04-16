@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D Model Viewer</title>
+
+    <!-- THREE.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+    
+    <!-- Sketchfab API -->
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+
+    <style>
+      #3d-container,
+      #api-frame {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      .iframe-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Responsive iframe with 16:9 aspect ratio */
+#iframe-container iframe {
+  width: 80vw; /* Adjust width as needed */
+  height: calc(80vw * 9 / 16); /* Maintain 16:9 aspect ratio */
+  max-height: 80vh; /* Ensure it doesn't exceed viewport height */
+  max-width: calc(80vh * 16 / 9); /* Ensure it doesn't exceed viewport width */
+}
+
+      .status-message {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Status message displayed at the top center -->
+    <div class="status-message"><%= statusMessage %></div>
+
+    <% if (statusMessage.toLowerCase().includes('open')) { %>
+      <!-- Sketchfab Model Embed with Viewer API -->
+      <div class="iframe-container">
+        <iframe
+          id="api-frame"
+          title="Bar store coffee shop interior lowpoly🍹🍸"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          src=""
+        ></iframe>
+      </div>
+      <script>
+        const iframe = document.getElementById('api-frame');
+        const uid = '035706936c1c434e9f9a28e15cf72401';
+        const client = new Sketchfab(iframe);
+
+        client.init(uid, {
+          success: function(api) {
+            api.start();
+            api.addEventListener('viewerready', function() {
+              if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+              } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+              } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+              } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+              }
+            });
+          },
+          error: function() {
+            console.error('Sketchfab API initialization failed.');
+          }
+        });
+      </script>
+    <% } else { %>
+      <!-- Container for custom 3D model -->
+      <div id="3d-container"></div>
+        <!-- Import map for module-based THREE.js -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js",
+          "three/examples/jsm/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js"
+        }
+      }
+    </script>
+      <script type="module" src="../js/app.js"></script>
+    <% } %>
+
+  
+  </body>
+</html>
